@@ -130,58 +130,81 @@
                     <p class="text-sm text-gray-600">ثانوية الفلاح بجدة</p>
                 </div>
             </div>
-            
+        
+            <header>
+    <button id="mobile-menu-button" class="md:hidden text-emerald-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <!-- زر لايك -->
+    <button id="like-button" class="text-emerald-800 font-bold  "> ضع اعجاب لموقعنا !
+        👍
+        <span id="like-count">0</span>
+    </button>
+</header>
+
+<script>
+  // استرجاع عدد اللايكات من localStorage
+  let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
+  let hasLiked = localStorage.getItem('hasLiked') === 'true';
+
+  // تحديث عدد اللايكات في الصفحة
+  document.getElementById('like-count').innerText = likeCount;
+
+  // إذا كان المستخدم قد ضغط على لايك مسبقًا، اجعل الزر غير قابل للنقر مجددًا
+  if (hasLiked) {
+    document.getElementById('like-button').disabled = true;
+  }
+
+  // عند الضغط على زر لايك
+  document.getElementById('like-button').addEventListener('click', function() {
+    if (!hasLiked) {
+      likeCount++;
+      localStorage.setItem('likeCount', likeCount); // حفظ العدد في localStorage
+      localStorage.setItem('hasLiked', 'true'); // حفظ حالة أنه تم الضغط على لايك
+      document.getElementById('like-count').innerText = likeCount;
+      document.getElementById('like-button').disabled = true; // تعطيل الزر بعد الضغط عليه
+    }
+  });
+</script>
+
+
             <nav class="hidden md:block">
                 <ul class="flex space-x-1 space-x-reverse">
                     <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الرئيسية</a></li>
-                    <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">المعلمون</a></li>
-                    <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الطلاب</a></li>
-                    <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الشعبة</a></li>
-                    <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الطلاب</a></li>
+                    <li><a href="#teachers" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">المعلمون</a></li>
+                    <li><a href="#students" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الطلاب</a></li>
+                    <li><a href="#department-work" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الشعبة</a></li>
+                    <li><a href="#work" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الطلاب</a></li>
                     <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الأخبار</a></li>
                     <li><a href="#"  class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">معرض الصور</a></li>
                     <li><a href="#"  class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">التواصل</a></li>
                 </ul>
             </nav>
             
-<button id="mobile-menu-button" class="md:hidden text-emerald-800">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-    </svg>
-</button>
-</div>
-
-<!-- Mobile menu -->
-<div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-    <div class="px-2 pt-2 pb-3 space-y-1">
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الرئيسية</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">المعلمون</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الطلاب</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الشعبة</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الطلاب</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الأخبار</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">معرض الصور</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">التواصل</a>
-    </div>
-</div>
-</header>
-
-<script>
-  const menuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuLinks = mobileMenu.querySelectorAll('a');
-
-  menuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-    });
-  });
-</script>
-
+            <button id="mobile-menu-button" class="md:hidden text-emerald-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الرئيسية</a>
+                <a href="#teachers" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">المعلمون</a>
+                <a href="#students" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الطلاب</a>
+                <a href="#department-work" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الشعبة</a>
+                <a href="#work" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الطلاب</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الأخبار</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">معرض الصور</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">التواصل</a>
+            </div>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero-pattern text-white py-16">
@@ -197,11 +220,13 @@
                 </div>
                 <div class="md:w-1/2 flex justify-center">
                     <div class="relative">
-                        
+                        <svg class="w-64 h-64 md:w-80 md:h-80" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                             <path fill="#10b981" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-1.5C87,13.4,81.3,26.8,73.6,39.2C65.9,51.7,56.1,63.3,43.7,70.7C31.3,78.1,15.7,81.4,0.4,80.8C-14.9,80.1,-29.9,75.5,-42.4,67.5C-54.9,59.5,-65,48.1,-71.5,35.2C-78,22.4,-80.9,8.1,-79.1,-5.8C-77.4,-19.6,-71,-39.3,-60,-54.6C-49,-69.9,-33.4,-80.9,-17.1,-83.8C-0.8,-86.7,15.2,-81.5,30.5,-83.6C45.8,-85.7,60.5,-95.1,70.9,-93.1C81.3,-91.1,87.4,-77.7,44.7,-76.4Z" transform="translate(100 100)"></path>
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                      
+                            <div class="text-center">
+                                <div class="text-6xl mb-2">ض</div>
+                                <div class="font-bold">لغة الضاد</div>
                             </div>
                         </div>
                     </div>
@@ -209,6 +234,21 @@
             </div>
         </div>
     </section>
+    <script>
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuLinks = mobileMenu.querySelectorAll('a');
+
+  menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>
 
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
@@ -401,12 +441,12 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div class="bg-emerald-50 p-6 rounded-lg shadow-md text-center card-hover">
-                    <div class="text-5xl font-bold text-emerald-800 mb-2">320</div>
+                    <div class="text-5xl font-bold text-emerald-800 mb-2">225</div>
                     <p class="text-gray-700">إجمالي عدد الطلاب</p>
                 </div>
                 
                 <div class="bg-emerald-50 p-6 rounded-lg shadow-md text-center card-hover">
-                    <div class="text-5xl font-bold text-emerald-800 mb-2">6</div>
+                    <div class="text-5xl font-bold text-emerald-800 mb-2">9</div>
                     <p class="text-gray-700">عدد الفصول الدراسية</p>
                 </div>
                 
@@ -427,41 +467,55 @@
                             <ul class="space-y-2">
                                 <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
                                     <span>الفصل 3/1</span>
-                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">35 طالب</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
                                 </li>
                                 <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
                                     <span>الفصل 2/1</span>
-                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">37 طالب</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
                                 </li>
                                 <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
                                     <span>الفصل 1/1</span>
                                     <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
                                 </li>
                             </ul>
-                        </div>
-                        
-                               
+                        </div>  
+                        <div>
+                            <h4 class="font-bold text-emerald-800 mb-4">الصف الثاني الثانوي</h4>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                                    <span>الفصل 3/1</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
+                                </li>
+                                <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                                    <span>الفصل 2/1</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
+                                </li>
+                                <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                                    <span>الفصل 1/1</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
+                                </li>
+                            </ul>
+                        </div>  
                         <div>
                             <h4 class="font-bold text-emerald-800 mb-4">الصف الثالث الثانوي</h4>
                             <ul class="space-y-2">
                                 <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
                                     <span>الفصل 3/أ</span>
-                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">36 طالب</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
                                 </li>
                                 <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
                                     <span>الفصل 3/ب</span>
-                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">35 طالب</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
                                 </li>
                                 <li class="flex justify-between items-center p-3 bg-gray-50 rounded">
                                     <span>الفصل 3/ج</span>
-                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">36 طالب</span>
+                                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">25 طالب</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 bg-emerald-800 text-white">
                     <h3 class="text-xl font-bold">إحصائيات أداء الطلاب</h3>
@@ -775,7 +829,7 @@
   });
 </script>
     <!-- Student Work Section -->
-    <section id="student-work" class="py-16 bg-white">
+    <section id="work" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-emerald-800 section-title">أعمال الطلاب</h2>
@@ -848,7 +902,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                                 </svg>
-                                <span>- - - - -</span>
+                                <span>Data Collector</span>
                             </div>
                             <button class="w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition">نبذة مختصرة عنه</button>
                         </div>
@@ -873,8 +927,8 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                                 </svg>
-                                <span>- - - - -</span>
-                            </div>
+                                <span>HTML,CSS,JS,Django</span>
+                            </div>  
                             <button class="w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition">نبذة مختصرة عنه</button>
                         </div>
                     </div>
@@ -882,6 +936,6 @@
             </div><br>
 <br>
 <br>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden mb-12">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden mb-102">
                 <div class="p-6 bg-emerald-800 text-white">
-                    <h3 class="text-xl font-bold">تم تصميم الموقع من قبل فريق التقنية<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93fc5bc1b0dbcdf8',t:'MTc0NzI0NjI5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></h3></div></div></div></section><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./saved_resource(2).html"></iframe></body></html>
+                    <h3 class="text-xl font-bold">تم تصميم الموقع من قبل الفريق التقني.<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93fc5bc1b0dbcdf8',t:'MTc0NzI0NjI5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></h3></div></div></div></section><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./saved_resource(2).html"></iframe></body></html>
