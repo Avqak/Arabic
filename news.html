@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>أخبار شعبة اللغة العربية</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head><br>
+<body class="bg-gray-50">
+       <!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center">
+            <div class="text-emerald-800 mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold text-emerald-800">شعبة اللغة العربية</h1>
+                <p class="text-sm text-gray-600">ثانوية الفلاح بجدة</p>
+            </div>
+        </div>
+
+        <header>
+            <button id="mobile-menu-button" class="md:hidden text-emerald-800">
+                <svg xmlns="http://
+            </button>
+
+            <!-- زر لايك -->
+            <button id="like-button" class="text-emerald-800 font-bold"> ضع اعجاب لموقعنا !
+                👍
+                <span id="like-count">0</span>
+            </button>
+        </header>
+
+        <nav class="hidden md:block">
+            <ul class="flex space-x-1 space-x-reverse">
+                <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الرئيسية</a></li>
+                <li><a href="#teachers" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">المعلمون</a></li>
+                <li><a href="#students" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الطلاب</a></li>
+                <li><a href="#department-work" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الشعبة</a></li>
+                <li><a href="#work" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الطلاب</a></li>
+                <li><a href="news.html" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الأخبار</a></li>
+                <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">معرض الصور</a></li>
+                <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">التواصل</a></li>
+            </ul>
+        </nav>
+        
+        <button id="mobile-menu-button" class="md:hidden text-emerald-800">
+        </button>
+    </div>
+    
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الرئيسية</a>
+            <a href="#teachers" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">المعلمون</a>
+            <a href="#students" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الطلاب</a>
+            <a href="#department-work" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الشعبة</a>
+            <a href="#work" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الطلاب</a>
+            <a href="news.html" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الأخبار</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">معرض الصور</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">التواصل</a>
+        </div>
+    </div>
+</header>
+
+<script>
+  // استرجاع عدد اللايكات من localStorage
+  let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
+  let hasLiked = localStorage.getItem('hasLiked') === 'true';
+
+  // تحديث عدد اللايكات في الصفحة
+  document.getElementById('like-count').innerText = likeCount;
+
+  // إذا كان المستخدم قد ضغط على لايك مسبقًا، اجعل الزر غير قابل للنقر مجددًا
+  if (hasLiked) {
+    document.getElementById('like-button').disabled = true;
+  }
+
+  // عند الضغط على زر لايك
+  document.getElementById('like-button').addEventListener('click', function() {
+    if (!hasLiked) {
+      likeCount++;
+      localStorage.setItem('likeCount', likeCount); // حفظ العدد في localStorage
+      localStorage.setItem('hasLiked', 'true'); // حفظ حالة أنه تم الضغط على لايك
+      document.getElementById('like-count').innerText = likeCount;
+      document.getElementById('like-button').disabled = true; // تعطيل الزر بعد الضغط عليه
+    }
+  });
+
+  // قائمة الهاتف الجوال
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuLinks = mobileMenu.querySelectorAll('a');
+
+  menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>
+
+
+
+            <nav class="hidden md:block">
+                <ul class="flex space-x-1 space-x-reverse">
+                    <li><a href="saved_resource.html" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الرئيسية</a></li>
+                    <li><a href="saved_resource.html#teachers" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">المعلمون</a></li>
+                    <li><a href="saved_resource.html#students" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الطلاب</a></li>
+                    <li><a href="saved_resource.html#department-work" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الشعبة</a></li>
+                    <li><a href="saved_resource.html#work" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">أعمال الطلاب</a></li>
+                    <li><a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">الأخبار</a></li>
+                    <li><a href="#"  class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">معرض الصور</a></li>
+                    <li><a href="#"  class="px-3 py-2 rounded-md text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition">التواصل</a></li>
+                </ul>
+            </nav>
+            
+            <button id="mobile-menu-button" class="md:hidden text-emerald-800">
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الرئيسية</a>
+                <a href="saved_resource.html/#teachers" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">المعلمون</a>
+                <a href="#students" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الطلاب</a>
+                <a href="#department-work" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الشعبة</a>
+                <a href="#work" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">أعمال الطلاب</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">الأخبار</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">معرض الصور</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-800 hover:bg-emerald-100">التواصل</a>
+            </div>
+        </div>
+    </header>
+
+  <div class="container mx-auto px-6 py-16">
+    <h1 class="text-center text-3xl font-bold mb-12 text-emerald-800">أخبار شعبة اللغة العربية</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- بطاقة خبر 1 -->
+      <article class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 relative flex flex-col"><br>x 
+        <img src="https://via.placeholder.com/400x220?text=خبر+1" alt="خبر 1" class="w-full h-44 object-cover" />
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-xl font-bold mb-2 text-emerald-800">عنوان الخبر الأول</h2>
+          <time datetime="2025-05-17" class="text-sm text-emerald-600 mb-4">17 مايو 2025</time>
+          <p class="text-gray-700 flex-grow">هذا نص مختصر يوضح محتوى الخبر الأول، يمكن تعديله حسب الحاجة ليعطي فكرة موجزة عن الخبر.</p>
+          <button
+            data-popup-target="popup1"
+            class="mt-4 px-4 py-2 bg-emerald-600 text-white rounded font-semibold hover:bg-emerald-700 transition relative z-10"
+          >
+            اقرأ المزيد
+          </button>
+        </div>
+
+        <!-- النافذة المنبثقة -->
+        <div
+          id="popup1"
+          class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50"
+        >
+          <div class="bg-white rounded-lg max-w-lg w-full p-6 relative">
+            <button
+              class="absolute top-3 right-3 text-2xl font-bold text-gray-700 hover:text-gray-900 close-popup"
+              aria-label="إغلاق النافذة"
+            >
+              &times;
+            </button>
+            <h3 class="text-2xl font-bold mb-4 text-emerald-800">عنوان الخبر الأول</h3>
+            <p>هذا نص مفصل للخبر الأول يظهر في النافذة المنبثقة، ويمكنك وضع أي محتوى ترغب به هنا لتوضيح الخبر بالكامل.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- بطاقة خبر 2 -->
+      <article class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 relative flex flex-col">
+        <img src="https://via.placeholder.com/400x220?text=خبر+2" alt="خبر 2" class="w-full h-44 object-cover" />
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-xl font-bold mb-2 text-emerald-800">عنوان الخبر الثاني</h2>
+          <time datetime="2025-05-16" class="text-sm text-emerald-600 mb-4">16 مايو 2025</time>
+          <p class="text-gray-700 flex-grow">ملخص موجز للخبر الثاني، يشرح أهم التفاصيل بطريقة واضحة وسلسة.</p>
+          <button
+            data-popup-target="popup2"
+            class="mt-4 px-4 py-2 bg-emerald-600 text-white rounded font-semibold hover:bg-emerald-700 transition relative z-10"
+          >
+            اقرأ المزيد
+          </button>
+        </div>
+
+        <div
+          id="popup2"
+          class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50"
+        >
+          <div class="bg-white rounded-lg max-w-lg w-full p-6 relative">
+            <button
+              class="absolute top-3 right-3 text-2xl font-bold text-gray-700 hover:text-gray-900 close-popup"
+              aria-label="إغلاق النافذة"
+            >
+              &times;
+            </button>
+            <h3 class="text-2xl font-bold mb-4 text-emerald-800">عنوان الخبر الثاني</h3>
+            <p>هذا نص مفصل للخبر الثاني يظهر في النافذة المنبثقة، ويمكنك إضافة أي تفاصيل إضافية تود عرضها هنا.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- بطاقة خبر 3 -->
+      <article class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 relative flex flex-col">
+        <img src="https://via.placeholder.com/400x220?text=خبر+3" alt="خبر 3" class="w-full h-44 object-cover" />
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-xl font-bold mb-2 text-emerald-800">عنوان الخبر الثالث</h2>
+          <time datetime="2025-05-15" class="text-sm text-emerald-600 mb-4">15 مايو 2025</time>
+          <p class="text-gray-700 flex-grow">شرح مختصر للخبر الثالث مع دعوة للانتقال إلى التفاصيل الكاملة للخبر.</p>
+          <button
+            data-popup-target="popup3"
+            class="mt-4 px-4 py-2 bg-emerald-600 text-white rounded font-semibold hover:bg-emerald-700 transition relative z-10"
+          >
+            اقرأ المزيد
+          </button>
+        </div>
+
+        <div
+          id="popup3"
+          class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50"
+        >
+          <div class="bg-white rounded-lg max-w-lg w-full p-6 relative">
+            <button
+              class="absolute top-3 right-3 text-2xl font-bold text-gray-700 hover:text-gray-900 close-popup"
+              aria-label="إغلاق النافذة"
+            >
+              &times;
+            </button>
+            <h3 class="text-2xl font-bold mb-4 text-emerald-800">عنوان الخبر الثالث</h3>
+            <p>تفاصيل الخبر الثالث الكاملة تظهر هنا داخل النافذة المنبثقة، استخدم هذه المساحة للشرح والتوضيح.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <script>
+    // فتح النافذة المنبثقة
+    document.querySelectorAll('button[data-popup-target]').forEach(button => {
+      button.addEventListener('click', () => {
+        const popupId = button.getAttribute('data-popup-target');
+        const popup = document.getElementById(popupId);
+        if (popup) {
+          popup.classList.remove('hidden');
+          popup.classList.add('flex');
+        }
+      });
+    });
+
+    // إغلاق النافذة عند الضغط على زر الإغلاق
+    document.querySelectorAll('.close-popup').forEach(button => {
+      button.addEventListener('click', () => {
+        const popup = button.closest('div[id^="popup"]');
+        if (popup) {
+          popup.classList.remove('flex');
+          popup.classList.add('hidden');
+        }
+      });
+    });
+
+    // إغلاق النافذة عند الضغط على الخلفية السوداء (خارج المحتوى)
+    document.querySelectorAll('div[id^="popup"]').forEach(popup => {
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.remove('flex');
+          popup.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
